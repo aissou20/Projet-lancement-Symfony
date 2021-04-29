@@ -1,0 +1,35 @@
+{% form_theme  form 'bootstrap_4_layout.html.twig' %}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {% for notice in app.flashes('notice') %}
+            <p>{{ notice }}</p>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div id="form">
+
+        <div class="card subscribe-form">
+            <div class="card-header">
+                <h4 class="card-title">Ne ratez pas la sortie! Inscrivez-vous </h4>
+            </div>
+            <div class="card-body">
+                {{ form_errors(form) }}
+                {{ form_row(form.name,  { 'label': 'Nom :'}) }}
+                {{ form_row(form.pseudo,  { 'label': 'Pseudo :'}) }}
+                {{ form_row(form.email, { 'label': 'Email:'}) }}
+                {{ form_row(form.submit , { 'label': 'Je reçois', 'attr': {'class': 'btn-dark'}}) }}
+            </div>
+            <div class="card-footer">
+                <a href="{{ path('accueil') }}"><p>Retour à l'accueil</p></a>
+            </div>
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
